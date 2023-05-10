@@ -2,19 +2,29 @@ import express from 'express'
 
 const app = express()
 
-app.get('users', (request, response) => {
+app.use(express.json())
+
+interface User {
+  id: string
+  name: string
+  email: string
+}
+
+const users: User[] = []
+
+app.get('/users', (request, response) => {
   return response.json(['usuário 1'])
 })
 
-app.post('./users', (request, response) => {
+app.post('/users', (request, response) => {
   return response.json({ message: 'Criando usuário' })
 })
 
-app.put('./users', (request, response) => {
+app.put('/users', (request, response) => {
   return response.json({ message: 'Atualizando usuário' })
 })
 
-app.delete('./users', (request, response) => {
+app.delete('/users', (request, response) => {
   return response.json({ message: 'Deletando usuário '})
 })
 
